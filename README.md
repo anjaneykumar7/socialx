@@ -11,7 +11,7 @@
 * Simply Login and SignUp screen
 * News screen it contains logout feature
 * If you view once a news screen and news stores in offline mode
-- [Demo Video](https://youtu.be/unDdzv4LeKM)
+- [Demo Video](https://youtube.com/shorts/rsfqnyOYw1g)
 - [App Link](https://github.com/anjaneykumar7/socialx/master/main/socailX.apk)
 
 ## Used Libraries
