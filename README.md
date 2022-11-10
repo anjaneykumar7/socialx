@@ -12,5 +12,6 @@ Features
 * News screen it contains logout feature
 * If you view once a news screen and news stores in offline mode
 - [Demo Video](https://youtu.be/unDdzv4LeKM)
-- [App Link](https://github.com/anjaneykumar7/socialx/raw/main/socailX.apk)
+- [App Link](https://github.com/anjaneykumar7/socialx/master/main/socailX.apk)
+
 
