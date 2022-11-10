@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:socialx/controller/news_controller.dart';
 import 'package:jiffy/jiffy.dart';
+import 'package:socialx/pages/signup_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -14,6 +16,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final controller = Get.find<NewsController>();
+  Box? box = Hive.box("data");
 
   @override
   void initState() {
@@ -36,24 +39,53 @@ class _HomePageState extends State<HomePage> {
       body: SafeArea(
         child: Column(
           children: [
-            const Card(
-              child: Padding(
-                padding: EdgeInsets.all(5.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintStyle: TextStyle(color: Colors.blue, fontSize: 24),
-                    prefixIcon: Icon(
-                      Icons.search,
-                      color: Colors.blue,
-                      shadows: [Shadow(color: Colors.blue, blurRadius: 3)],
-                      size: 30,
+            Row(
+              children: [
+                const Expanded(
+                  child: Card(
+                    child: Padding(
+                      padding: EdgeInsets.all(5.0),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintStyle:
+                              TextStyle(color: Colors.blue, fontSize: 24),
+                          prefixIcon: Icon(
+                            Icons.search,
+                            color: Colors.blue,
+                            shadows: [
+                              Shadow(color: Colors.blue, blurRadius: 3)
+                            ],
+                            size: 30,
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.white, width: 0)),
+                          hintText: "Search in feed",
+                        ),
+                      ),
                     ),
-                    focusedBorder: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.white, width: 0)),
-                    hintText: "Search in feed",
                   ),
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.only(right: 18.0),
+                  child: CircleAvatar(
+                    radius: 25,
+                    backgroundColor: Colors.white,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.logout,
+                        color: Colors.red,
+                      ),
+                      onPressed: () async {
+                        await box!.put("login", false);
+                        Route route = MaterialPageRoute(
+                            builder: (context) => const SignupPage());
+                        Navigator.push(context, route);
+                      },
+                    ),
+                  ),
+                )
+              ],
             ),
             GetBuilder<NewsController>(builder: (_) {
               return Expanded(

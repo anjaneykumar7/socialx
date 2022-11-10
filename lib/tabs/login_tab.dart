@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:socialx/utils/constant.dart';
 
@@ -14,6 +15,7 @@ class LoginTab extends StatefulWidget {
 }
 
 class _LoginTabState extends State<LoginTab> {
+  Box? box = Hive.box("data");
   var email = TextEditingController();
   var password = TextEditingController();
 
@@ -185,7 +187,7 @@ class _LoginTabState extends State<LoginTab> {
               child: MaterialButton(
                 splashColor: Colors.white,
                 minWidth: double.maxFinite,
-                onPressed: () {
+                onPressed: () async {
                   if (email.text.isEmpty) {
                     toasty(context, "please enter email");
                   } else {
@@ -196,6 +198,7 @@ class _LoginTabState extends State<LoginTab> {
                           password.text != "admin") {
                         toasty(context, "enter the correct credential");
                       } else {
+                        await box!.put("login", true);
                         Route route = MaterialPageRoute(
                             builder: (context) => const HomePage());
                         Navigator.push(context, route);

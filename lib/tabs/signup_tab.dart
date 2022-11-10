@@ -3,6 +3,7 @@
 import 'package:country_pickers/country.dart';
 import 'package:country_pickers/country_pickers.dart';
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:socialx/utils/constant.dart';
 
@@ -17,7 +18,7 @@ class SignupTab extends StatefulWidget {
 
 class _SignupTabState extends State<SignupTab> {
   var name = TextEditingController();
-
+  Box? box = Hive.box("data");
   var email = TextEditingController();
   var mobile = TextEditingController();
 
@@ -225,20 +226,21 @@ class _SignupTabState extends State<SignupTab> {
               child: MaterialButton(
                 splashColor: Colors.white,
                 minWidth: double.maxFinite,
-                onPressed: () {
+                onPressed: () async {
                   if (name.text.isEmpty) {
                     toasty(context, "please enter name");
                   } else {
                     if (email.text.isEmpty) {
                       toasty(context, "please enter email");
                     } else {
-                      if (password.text.isEmpty) {
+                      if (mobile.text.isEmpty) {
                         toasty(context, "please enter mobile number");
                       } else {
                         if (password.text.isEmpty) {
                           toasty(context, "please enter password");
                         } else {
                           if (ischecked) {
+                            await box!.put("login", true);
                             Route route = MaterialPageRoute(
                                 builder: (context) => const HomePage());
                             Navigator.push(context, route);

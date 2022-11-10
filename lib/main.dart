@@ -24,6 +24,9 @@ class MyApp extends StatelessWidget {
         systemNavigationBarColor: const Color.fromARGB(255, 219, 9, 9));
 
     Get.lazyPut<NewsController>(() => NewsController(), fenix: true);
+    Box? box = Hive.box("data");
+    bool islogin = box.get("login") ?? false;
+
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'SocailX',
@@ -32,7 +35,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.red,
       ),
-      home: const SignupPage(),
+      home: !islogin ? const SignupPage() : const HomePage(),
     );
   }
 }
