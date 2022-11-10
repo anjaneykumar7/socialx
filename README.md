@@ -1,16 +1,18 @@
 # socialx
 
-A new Flutter project.
 
-## Getting Started
+## Assignment Submissions Report 
+•	I had taken 10 hours to complete my assignment. I had taken 30 min initial research regarding to assignment. I had face some problem in firebase that takes 2 hours to solve that problem. I missed  below code in main.dart “DefaultFirebaseOptions.currentPlatform,” 
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### ABSTRACT
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Features 
+* Simply Login and SignUp screen
+* News screen it contains logout feature
+* If you view once a news screen and news stores in offline mode
+- [Demo Video](https://youtu.be/unDdzv4LeKM)
+- [App Link](https://github.com/anjaneykumar02/socialx/raw/main/socailx.apk)
+
+.
